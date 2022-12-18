@@ -15,8 +15,8 @@ public void startGame() {
 			
 			s2 = new Scanner(System.in);
 			
-			player1=takeInput(1);
-			player2=takeInput(2);
+			player1=input(1);
+			player2=input(2);
 			Integer boardSize=8;
 
 
@@ -25,7 +25,7 @@ public void startGame() {
 
 }
 
-/**private Player takeInput(Integer num) {
+private Player input(Integer num) {
 		
 		Scanner s=new Scanner(System.in);
 					
@@ -39,7 +39,7 @@ public void startGame() {
 		Player play=new Player(name, ch);
 		return play;
 		
-	}**/
+	}
 
 
 }
