@@ -22,7 +22,24 @@ public void startGame() {
 
 			
 			board=new Board(boardSize,player1.getSymbol(), player2.getSymbol());
-
+			move=new Move(boardSize,player1.getPieces(),player2.getPieces());
+			System.out.println("Start Playing The Othello");
+			move.print();
+			
+			boolean player1Turn=true;
+		
+			while(!move.isFull()) {
+				
+				if(player1Turn) {
+					if(move.noMovesAvailable(player1.getPieces())) {						
+						System.out.println("Player1 ("+player1.getPieces()+") cannot make a move");	
+						player1Turn=false;
+						continue;
+					}
+					else {
+						System.out.println("Enter player1("+player1.getPieces()+")'s move : ");
+					}
+				}
 }
 
 private Player input(Integer num) {
