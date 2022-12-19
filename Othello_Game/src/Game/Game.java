@@ -83,8 +83,8 @@ public void startGame() {
 				move.print();
 				
 			}			
-			Character ch=board.getWinner(player1.getPieces(), player2.getPieces());//evaluate the winner after the board is full
-			
+			Character ch=board.getWinner(player1.getPieces(), player2.getPieces());
+			//Winner
 			if(ch==player1.getPieces()) {
 				System.out.println("PLAYER1 ("+player1.getName()+") WINS!!!");
 			}
