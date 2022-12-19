@@ -99,4 +99,17 @@ package othello;
 			
 		}
 	
+
+		public boolean noMovesAvailable(Character ch) {
+		
+			for(Integer i=0;i<8;i++) {
+				for(Integer j=0;j<8;j++) {
+					if(getBoard()[i][j]=='\0' && canMove(i, j, ch)) {
+						return false;
+					}
+				}
+			}
+			return true;
+			
+		}
 	}
