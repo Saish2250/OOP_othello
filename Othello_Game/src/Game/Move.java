@@ -32,4 +32,25 @@ public class Moves extends Board{
 		}			
 				
 	}
+
+	public boolean canMove(Integer x, Integer y, Character ch) {//to check if x, y is a valid point or not in terms of rules of game
+		
+		Integer arr[][]= {{1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}};			
+		
+		for(Integer i=0;i<8;i++) {				
+			Integer X=x+arr[i][0];
+			Integer Y=y+arr[i][1];	
+			Integer count=0;
+			while(inRange(X, Y) && getBoard()[X][Y]!='\0' && getBoard()[X][Y]!=ch) {					
+				X+=arr[i][0];
+				Y+=arr[i][1];
+				count++;
+			}
+			if(inRange(X, Y) && getBoard()[X][Y]==ch && count>=1) {					
+				return true;					
+			}				
+		}
+		return false;
+		
+	}
 }
