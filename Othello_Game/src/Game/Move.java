@@ -6,7 +6,7 @@ public class Moves extends Board{
 		// TODO Auto-generated constructor stub
 	}
 
-	public void makeMove(Integer x, Integer y, Character ch) {to make a move at x, y point if a move can be made there
+	public void makeMove(Integer x, Integer y, Character ch) {
 		
 		Integer arr[][]= {{1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}};		
 		
@@ -33,7 +33,7 @@ public class Moves extends Board{
 				
 	}
 
-	public boolean canMove(Integer x, Integer y, Character ch) {//to check if x, y is a valid point or not in terms of rules of game
+	public boolean canMove(Integer x, Integer y, Character ch) {
 		
 		Integer arr[][]= {{1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}};			
 		
@@ -54,7 +54,7 @@ public class Moves extends Board{
 		
 	}
 
-	public void print() {//to print the board
+	public void print() {
 		
 		System.out.print("   ");
 		for(Integer i=0;i<getBoardSize();i++) {
@@ -86,6 +86,44 @@ public class Moves extends Board{
 			System.out.print("---");
 		}
 		System.out.println();
+		
+	}
+
+	public boolean isFull() {
+		
+		for(Integer i=0;i<getBoardSize();i++) {
+			for(Integer j=0;j<getBoardSize();j++) {
+				if(getBoard()[i][j]=='\0') {
+					return false;
+				}
+			}
+		}
+		return true;
+		
+	}
+
+	public boolean inRange(Integer x, Integer y) {
+		
+		return (x>=0 && x<getBoardSize() && y>=0 && y<getBoardSize());
+		
+	}
+
+	public boolean isAvailable(Integer x, Integer y) {
+		
+		return getBoard()[x][y]=='\0';
+		
+	}
+
+	public boolean noMovesAvailable(Character ch) {
+		
+		for(Integer i=0;i<8;i++) {
+			for(Integer j=0;j<8;j++) {
+				if(getBoard()[i][j]=='\0' && canMove(i, j, ch)) {
+					return false;
+				}
+			}
+		}
+		return true;
 		
 	}
 }
