@@ -53,4 +53,39 @@ public class Moves extends Board{
 		return false;
 		
 	}
+
+	public void print() {//to print the board
+		
+		System.out.print("   ");
+		for(Integer i=0;i<getBoardSize();i++) {
+			System.out.print("---");
+		}
+		System.out.println();
+		
+		System.out.print("   ");
+		for(Integer i=0;i<getBoardSize();i++) {
+			System.out.print("|"+i+"|");
+		}
+		System.out.println();
+		
+		for(Integer i=0;i<getBoardSize();i++) {				
+			System.out.print("|"+i+"|");
+			for(Integer j=0;j<getBoardSize();j++) {
+				if(getBoard()[i][j]=='\0') {
+					System.out.print("| |");
+				}
+				else {
+					System.out.print("|"+getBoard()[i][j]+"|");
+				}
+			}
+			System.out.println();
+		}
+		
+		System.out.print("   ");
+		for(Integer i=0;i<getBoardSize();i++) {
+			System.out.print("---");
+		}
+		System.out.println();
+		
+	}
 }
