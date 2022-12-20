@@ -1,6 +1,6 @@
 package Game;
 
-public class Moves extends Board{
+public class Move extends Board{
     public Move(Integer boardSize, Character ch1, Character ch2) {
 		super(boardSize, ch1, ch2);
 		// TODO Auto-generated constructor stub
@@ -11,7 +11,7 @@ public class Moves extends Board{
 		Integer arr[][]= {{1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}};		
 		
 		getBoard()[x][y]=ch;
-		for(Integer i=0;i8;i++) {				
+		for(Integer i=0;i<8;i++) {				
 			Integer X=x+arr[i][0];
 			Integer Y=y+arr[i][1];	
 			Integer count=0;
@@ -20,7 +20,7 @@ public class Moves extends Board{
 				Y+=arr[i][1];
 				count++;
 			}
-			if(inRange(X, Y) && getBoard()[X][Y]==ch && count=1) {					
+			if(inRange(X, Y) && getBoard()[X][Y]==ch && count>=1) {					
 				X=x+arr[i][0];
 				Y=y+arr[i][1];
 				while(inRange(X, Y) && getBoard()[x][y]!='0' && getBoard()[X][Y]!=ch) {

@@ -3,11 +3,10 @@ package Game;
 import java.util.Scanner;
 
 
-
-
 public class Game {
-private Players player1,player2;
+private Player player1,player2;
 private Board board;
+private Move move;
 private Scanner sc;
 private Scanner sc1;
 
@@ -21,7 +20,7 @@ public void startGame() {
 
 
 			
-			board=new Board(boardSize,player1.getSymbol(), player2.getSymbol());
+			board=new Board(boardSize,player1.getPieces(), player2.getPieces());
 			move=new Move(boardSize,player1.getPieces(),player2.getPieces());
 			System.out.println("Start Playing The Othello");
 			move.print();
@@ -49,6 +48,8 @@ public void startGame() {
 						System.out.println("Enter player2 ("+player2.getPieces()+")'s move : ");
 					}
 				}
+				Integer x=sc1.nextInt();
+				Integer y=sc1.nextInt();
 				while(!move.inRange(x, y) || !(move.isAvailable(x, y))) {
 					System.out.println("Enter a Valid Point");
 					x=sc1.nextInt();
@@ -84,7 +85,7 @@ public void startGame() {
 				
 			}			
 			Character ch=board.getWinner(player1.getPieces(), player2.getPieces());
-			//Winner
+			
 			if(ch==player1.getPieces()) {
 				System.out.println("PLAYER1 ("+player1.getName()+") WINS!!!");
 			}
@@ -99,19 +100,18 @@ public void startGame() {
 
 private Player input(Integer num) {
 		
-		Scanner s=new Scanner(System.in);
+		sc=new Scanner(System.in);
 					
 		System.out.println("Enter the name of player"+num+"(Only one word) : ");
 		String name=sc.next();
 		
 		System.out.println("Enter the symbol of player"+num+"(Only one character) : ");			
 		String str=sc.next();
-		char ch=str.charAt(0);						
+		Character ch=str.charAt(0);						
 		
 		Player play=new Player(name, ch);
 		return play;
 		
 	}
-
 
 }

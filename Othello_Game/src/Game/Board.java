@@ -1,6 +1,6 @@
-package othello;
+package Game;
 
-public class Board extends Othello {
+public class Board extends Game {
 
 	private Character board[][];
 	private Integer boardSize;
