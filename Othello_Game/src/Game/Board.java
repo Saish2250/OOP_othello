@@ -2,7 +2,7 @@ package Game;
 import java.util.ArrayList;
 public class Board extends Game {
 
-	private ArrayList <ArrayList<Character>> bo = new ArrayList<ArrayList<Character>>();
+	//private ArrayList <ArrayList<Character>> bo = new ArrayList<ArrayList<Character>>();
 	private char board[][];
 	private Integer boardSize;
 
