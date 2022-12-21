@@ -1,16 +1,15 @@
 package Game;
-import java.util.ArrayList;
 public class Board extends Game {
 
 	//private ArrayList <ArrayList<Character>> bo = new ArrayList<ArrayList<Character>>();
-	private char board[][];
+	private Character board[][];
 	private Integer boardSize;
 
 	public Board(Integer boardSize, Character ch1, Character ch2) {
 
 		this.setBoardSize(boardSize);
 
-		setBoard(new char[boardSize][boardSize]);
+		setBoard(new Character[boardSize][boardSize]);
 
 		Integer index = (boardSize - 1) / 2;
 		getBoard()[index][index] = ch2;
@@ -22,11 +21,11 @@ public class Board extends Game {
 
 	
 	
-	public char[][] getBoard() {
+	public Character[][] getBoard() {
 		return board;
 	}
 
-	public void setBoard(char[][] board) {
+	public void setBoard(Character[][] board) {
 		this.board = board;
 	}
 

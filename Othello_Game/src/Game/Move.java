@@ -15,7 +15,7 @@ public class Move extends Board{
 			Integer X=x+arr[i][0];
 			Integer Y=y+arr[i][1];	
 			Integer count=0;
-			while(inRange(X, Y) && getBoard()[X][Y]!='0' && getBoard()[X][Y]!=ch) {
+			while(inRange(X, Y) && getBoard()[X][Y]!=null && getBoard()[X][Y]!=ch) {
 				X+=arr[i][0];
 				Y+=arr[i][1];
 				count++;
@@ -23,7 +23,7 @@ public class Move extends Board{
 			if(inRange(X, Y) && getBoard()[X][Y]==ch && count>=1) {					
 				X=x+arr[i][0];
 				Y=y+arr[i][1];
-				while(inRange(X, Y) && getBoard()[x][y]!='0' && getBoard()[X][Y]!=ch) {
+				while(inRange(X, Y) && getBoard()[x][y]!=null && getBoard()[X][Y]!=ch) {
 					getBoard()[X][Y]=ch;
 					X+=arr[i][0];
 					Y+=arr[i][1];
@@ -41,7 +41,7 @@ public class Move extends Board{
 			Integer X=x+arr[i][0];
 			Integer Y=y+arr[i][1];	
 			Integer count=0;
-			while(inRange(X, Y) && getBoard()[X][Y]!='\0' && getBoard()[X][Y]!=ch) {					
+			while(inRange(X, Y) && getBoard()[X][Y]!=null && getBoard()[X][Y]!=ch) {					
 				X+=arr[i][0];
 				Y+=arr[i][1];
 				count++;
@@ -71,7 +71,7 @@ public class Move extends Board{
 		for(Integer i=0;i<getBoardSize();i++) {				
 			System.out.print("|"+i+"|");
 			for(Integer j=0;j<getBoardSize();j++) {
-				if(getBoard()[i][j]=='\0') {
+				if(getBoard()[i][j]==null) {
 					System.out.print("| |");
 				}
 				else {
@@ -93,7 +93,7 @@ public class Move extends Board{
 		
 		for(Integer i=0;i<getBoardSize();i++) {
 			for(Integer j=0;j<getBoardSize();j++) {
-				if(getBoard()[i][j]=='\0') {
+				if(getBoard()[i][j]==null) {
 					return false;
 				}
 			}
@@ -110,15 +110,15 @@ public class Move extends Board{
 
 	public boolean isAvailable(Integer x, Integer y) {
 		
-		return getBoard()[x][y]=='\0';
+		return getBoard()[x][y]==null;
 		
 	}
 
 	public boolean noMovesAvailable(Character ch) {
 		
-		for(Integer i=0;i<8;i++) {
-			for(Integer j=0;j<8;j++) {
-				if(getBoard()[i][j]=='\0' && canMove(i, j, ch)) {
+		for(Integer i=0;i<getBoardSize();i++) {
+			for(Integer j=0;j<getBoardSize();j++) {
+				if(getBoard()[i][j]==null && canMove(i, j, ch)) {
 					return false;
 				}
 			}
@@ -147,7 +147,7 @@ public class Move extends Board{
 		} else if (count1 < count2) {
 			return ch2;
 		} else {
-			return '\0';
+			return null;
 		}
 
 	}

@@ -16,7 +16,7 @@ public void startGame() {
 			
 			player1=input(1);
 			player2=input(2);
-			Integer boardSize=8;
+			Integer boardSize=4;
 
 
 			
@@ -43,6 +43,18 @@ public void startGame() {
 						System.out.println("Player2 ("+player2.getPieces()+") cannot make a move");
 						player1Turn=true;
 						continue;
+					}else if(move.noMovesAvailable(player2.getPieces()) && move.noMovesAvailable(player1.getPieces())) {
+						Character ch=move.getWinner(player1.getPieces(), player2.getPieces());
+						
+						if(ch==player1.getPieces()) {
+							System.out.println("PLAYER1 ("+player1.getName()+") WINS!!!");
+						}
+						else if(ch==player2.getPieces()){
+							System.out.println("PLAYER2 ("+player2.getName()+") WINS!!!");
+						}
+						else {
+							System.out.println("ITS A DRAW...");
+						}
 					}
 					else {
 						System.out.println("Enter player2 ("+player2.getPieces()+")'s move : ");
