@@ -17,26 +17,29 @@ public void startGame() {
 			
 			sc1 = new Scanner(System.in);
 			
-			player1=input(1);
-			player2=input(2);
-			Integer boardSize=8;
+			player1=input1(1);
+			player2=input2(2);
+			final Integer boardSize=4;
 
 
 			
 			board=new Board(boardSize,player1.getPieces(), player2.getPieces());
 			move=new Move(boardSize,player1.getPieces(),player2.getPieces());
+			Clear clscr=new Clear();
 			System.out.println("Start Playing The Othello");
 			move.print();
 			
 			boolean player1Turn=true;
 		
 			while(!move.isFull()) {
-				
+				Clear.clearcon();
 				if(player1Turn) {
 					if(move.noMovesAvailable(player1.getPieces())) {						
 						System.out.println("Player1 ("+player1.getPieces()+") cannot make a move");	
 						player1Turn=false;
 						continue;
+					}else if(move.noMovesAvailable(player2.getPieces()) && move.noMovesAvailable(player1.getPieces())) {
+						win();
 					}
 					else {
 						System.out.println("Enter player1("+player1.getPieces()+")'s move : ");
@@ -47,17 +50,7 @@ public void startGame() {
 						player1Turn=true;
 						continue;
 					}else if(move.noMovesAvailable(player2.getPieces()) && move.noMovesAvailable(player1.getPieces())) {
-						Character ch=move.getWinner(player1.getPieces(), player2.getPieces());
-						
-						if(ch==player1.getPieces()) {
-							System.out.println("PLAYER1 -->"+player1.getName()+" WINS!!!");
-						}
-						else if(ch==player2.getPieces()){
-							System.out.println("PLAYER2 -->"+player2.getName()+" WINS!!!");
-						}
-						else {
-							System.out.println("ITS A DRAW...");
-						}
+						win();
 					}
 					else {
 						System.out.println("Enter player2 ("+player2.getPieces()+")'s move : ");
@@ -123,7 +116,7 @@ public void startGame() {
 								break;
 							} catch (Exception e) {
 								// TODO: handle exception
-								System.out.println("Invalid position re-enter points");
+								System.out.println("Invalid input re-enter points");
 								sc1.next();
 							}
 						}
@@ -141,35 +134,53 @@ public void startGame() {
 				
 				move.print();
 				
-			}			
-			Character ch=move.getWinner(player1.getPieces(), player2.getPieces());
-			
-			if(ch==player1.getPieces()) {
-				System.out.println("PLAYER1 ("+player1.getName()+") WINS!!!");
 			}
-			else if(ch==player2.getPieces()){
-				System.out.println("PLAYER2 ("+player2.getName()+") WINS!!!");
-			}
-			else {
-				System.out.println("ITS A DRAW...");
-			}
+			win();
 			
 }
+public void win() {
+	Character ch=move.getWinner(player1.getPieces(), player2.getPieces());
+	
+	if(ch==player1.getPieces()) {
+		System.out.println("PLAYER1 -->"+player1.getName()+") WINS!!!");
+	}
+	else if(ch==player2.getPieces()){
+		System.out.println("PLAYER2 -->"+player2.getName()+") WINS!!!");
+	}
+	else {
+		System.out.println("ITS A DRAW...");
+	}
+}
 
-private Player input(Integer num) {
+private Player input1(Integer num) {
 		
 		sc=new Scanner(System.in);
 					
 		System.out.println("Enter the name of player"+num+"(Only one word) : ");
 		String name=sc.next();
 		
-		System.out.println("Enter the symbol for piece of player"+num+"(Only one character) : ");			
-		String str=sc.next();
-		Character ch=str.charAt(0);						
+		
+		Character ch='W';					
 		
 		Player play=new Player(name, ch);
 		return play;
 		
 	}
+
+private Player input2(Integer num) {
+	
+	sc=new Scanner(System.in);
+				
+	System.out.println("Enter the name of player"+num+"(Only one word) : ");
+	String name=sc.next();
+	
+	
+	Character ch='B';					
+	
+	Player play1=new Player(name, ch);
+	return play1;
+	
+}
+
 
 }
