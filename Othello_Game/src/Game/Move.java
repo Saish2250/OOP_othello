@@ -15,15 +15,15 @@ public class Move extends Board{
 			Integer X=x+arr[i][0];
 			Integer Y=y+arr[i][1];	
 			Integer count=0;
-			while(inRange(X, Y) && getBoard()[X][Y]!=null && getBoard()[X][Y]!=ch) {
+			while(isValid(X, Y) && getBoard()[X][Y]!=null && getBoard()[X][Y]!=ch) {
 				X+=arr[i][0];
 				Y+=arr[i][1];
 				count++;
 			}
-			if(inRange(X, Y) && getBoard()[X][Y]==ch && count>=1) {					
+			if(isValid(X, Y) && getBoard()[X][Y]==ch && count>=1) {					
 				X=x+arr[i][0];
 				Y=y+arr[i][1];
-				while(inRange(X, Y) && getBoard()[x][y]!=null && getBoard()[X][Y]!=ch) {
+				while(isValid(X, Y) && getBoard()[x][y]!=null && getBoard()[X][Y]!=ch) {
 					getBoard()[X][Y]=ch;
 					X+=arr[i][0];
 					Y+=arr[i][1];
@@ -33,7 +33,7 @@ public class Move extends Board{
 				
 	}
 
-	public boolean canMove(Integer x, Integer y, Character ch) {
+	public boolean possibleMove(Integer x, Integer y, Character ch) {
 		
 		Integer arr[][]= {{1, 0}, {-1, 0}, {0, 1}, {0, -1}, {1, 1}, {1, -1}, {-1, 1}, {-1, -1}};			
 		
@@ -41,12 +41,12 @@ public class Move extends Board{
 			Integer X=x+arr[i][0];
 			Integer Y=y+arr[i][1];	
 			Integer count=0;
-			while(inRange(X, Y) && getBoard()[X][Y]!=null && getBoard()[X][Y]!=ch) {					
+			while(isValid(X, Y) && getBoard()[X][Y]!=null && getBoard()[X][Y]!=ch) {					
 				X+=arr[i][0];
 				Y+=arr[i][1];
 				count++;
 			}
-			if(inRange(X, Y) && getBoard()[X][Y]==ch && count>=1) {					
+			if(isValid(X, Y) && getBoard()[X][Y]==ch && count>=1) {					
 				return true;					
 			}				
 		}
@@ -102,7 +102,7 @@ public class Move extends Board{
 		
 	}
 
-	public boolean inRange(Integer x, Integer y) {
+	public boolean isValid(Integer x, Integer y) {
 		
 		return (x>=0 && x<getBoardSize() && y>=0 && y<getBoardSize());
 		
@@ -118,7 +118,7 @@ public class Move extends Board{
 		
 		for(Integer i=0;i<getBoardSize();i++) {
 			for(Integer j=0;j<getBoardSize();j++) {
-				if(getBoard()[i][j]==null && canMove(i, j, ch)) {
+				if(getBoard()[i][j]==null && possibleMove(i, j, ch)) {
 					return false;
 				}
 			}
