@@ -1,0 +1,33 @@
+import java.util.Scanner;
+
+public class Rule{
+
+    public static void main(String[] args) {
+        readRules();
+    }
+
+    public static void readRules() {
+        Scanner input = new Scanner(System.in);
+        System.out.println("Welcome to the game! Would you like to play or read the rules?");
+        System.out.println("1. Play");
+        System.out.println("2. Read rules");
+        int choice = input.nextInt();
+        switch (choice) {
+            case 1:
+                // player wants to play the game
+                Game g1 = new Game();
+                g1.initializeGameObjects();
+                g1.startGame();
+                break;
+            case 2:
+                // player wants to read the rules
+                RuleBook ruleBook = new RuleBook();
+                ruleBook.displayRules();
+                break;
+            default:
+                System.out.println("Invalid choice. Please try again.");
+                runGameMenu();
+                break;
+        }
+    }
+}
