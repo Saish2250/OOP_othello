@@ -10,13 +10,16 @@ private Move move;
 private Scanner sc;
 private Scanner sc1;
 
+
+	
+
 public void startGame() {
 			
 			sc1 = new Scanner(System.in);
 			
 			player1=input(1);
 			player2=input(2);
-			Integer boardSize=4;
+			Integer boardSize=8;
 
 
 			
@@ -47,10 +50,10 @@ public void startGame() {
 						Character ch=move.getWinner(player1.getPieces(), player2.getPieces());
 						
 						if(ch==player1.getPieces()) {
-							System.out.println("PLAYER1 ("+player1.getName()+") WINS!!!");
+							System.out.println("PLAYER1 -->"+player1.getName()+" WINS!!!");
 						}
 						else if(ch==player2.getPieces()){
-							System.out.println("PLAYER2 ("+player2.getName()+") WINS!!!");
+							System.out.println("PLAYER2 -->"+player2.getName()+" WINS!!!");
 						}
 						else {
 							System.out.println("ITS A DRAW...");
@@ -60,27 +63,70 @@ public void startGame() {
 						System.out.println("Enter player2 ("+player2.getPieces()+")'s move : ");
 					}
 				}
-				Integer x=sc1.nextInt();
-				Integer y=sc1.nextInt();
+				
+				Integer x;
+				Integer y;
+				while(true) {
+					try {
+						x = sc1.nextInt();
+						y = sc1.nextInt();
+						break;
+					} catch (Exception e) {
+						// TODO: handle exception
+						System.out.println("Invalid position re-enter points");
+						sc1.next();
+					}
+				}
+				
 				while(!move.inRange(x, y) || !(move.isAvailable(x, y))) {
 					System.out.println("Enter a Valid Point");
-					x=sc1.nextInt();
-					y=sc1.nextInt();
+
+					while(true) {
+						try {
+							x = sc1.nextInt();
+							y = sc1.nextInt();
+							break;
+						} catch (Exception e) {
+							// TODO: handle exception
+							System.out.println("Invalid position re-enter points");
+							sc1.next();
+						}
+					}
 					
 				}				
 				
 				if(player1Turn) {										
 					while(!move.canMove(x, y, player1.getPieces())) {
 						System.out.println("Enter a point where a move can be made : ");					
-						x=sc1.nextInt();
-						y=sc1.nextInt();
+
+						while(true) {
+							try {
+								x = sc1.nextInt();
+								y = sc1.nextInt();
+								break;
+							} catch (Exception e) {
+								// TODO: handle exception
+								System.out.println("Invalid position re-enter points");
+								sc1.next();
+							}
+						}
 					}					
 				}
 				else {									
 					while(!move.canMove(x, y, player2.getPieces())) {								
 						System.out.println("Enter a point where a move can be made : ");					
-						x=sc1.nextInt();
-						y=sc1.nextInt();
+
+						while(true) {
+							try {
+								x = sc1.nextInt();
+								y = sc1.nextInt();
+								break;
+							} catch (Exception e) {
+								// TODO: handle exception
+								System.out.println("Invalid position re-enter points");
+								sc1.next();
+							}
+						}
 					}							
 				}
 				
@@ -117,7 +163,7 @@ private Player input(Integer num) {
 		System.out.println("Enter the name of player"+num+"(Only one word) : ");
 		String name=sc.next();
 		
-		System.out.println("Enter the symbol of player"+num+"(Only one character) : ");			
+		System.out.println("Enter the symbol for piece of player"+num+"(Only one character) : ");			
 		String str=sc.next();
 		Character ch=str.charAt(0);						
 		

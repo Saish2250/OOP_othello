@@ -1,7 +1,7 @@
 package Game;
 public class Board extends Game {
 
-	//private ArrayList <ArrayList<Character>> bo = new ArrayList<ArrayList<Character>>();
+	
 	private Character board[][];
 	private Integer boardSize;
 
