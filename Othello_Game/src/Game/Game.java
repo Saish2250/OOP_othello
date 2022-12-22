@@ -105,7 +105,7 @@ public void gameOver() {
 			} else if (ch == player2.getPieces()) {
 				System.out.println("-------PLAYER2 -->" + player2.getName() + " WINS!!!------");
 			} else {
-				System.out.println("ITS A DRAW!!!");
+				System.out.println("-------ITS A DRAW!!!-------");
 			} 
 		} catch (Exception e) {
 			// TODO: handle exception
